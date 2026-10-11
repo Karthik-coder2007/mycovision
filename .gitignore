@@ -1,0 +1,36 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+
+# Local outputs
+*.log
+
+# Trained model checkpoint
+backend/*.pth
+
+# All model checkpoints
+*.pth
+*.pt
+*.ckpt
+
+# Model experiment folders and generated visualizations
+best_baseline_efficientnetv2_s_correct/
+best_efficientnetv2_coordinate_attention_correct/
+best_efficientnetv2s_ca/
+final_efficientnetv2_coordinate_attention/
+efficientnetv2s_coordinate_attention_cam_grid.png
