@@ -14,6 +14,9 @@ type Result = {
 const API =
   process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
 
+const STREAMLIT_URL =
+  "https://mycovision-mushroom149.streamlit.app/";
+
 export default function Home() {
   const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState("");
@@ -42,6 +45,8 @@ export default function Home() {
     if (
       !["image/jpeg", "image/png", "image/webp"].includes(f.type)
     ) {
+      setFile(null);
+      setPreview("");
       setError("Choose a JPG, PNG or WEBP image.");
       return;
     }
@@ -110,6 +115,29 @@ export default function Home() {
           Upload a mushroom photo to view the predicted class,
           confidence, Grad-CAM overlay and learned spatial mask.
         </p>
+
+        <a
+          href={STREAMLIT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-block",
+            marginTop: "12px",
+            padding: "12px 20px",
+            backgroundColor: "#245c43",
+            color: "#ffffff",
+            borderRadius: "8px",
+            textDecoration: "none",
+            fontWeight: 600,
+          }}
+        >
+          Try Live Mushroom Classifier ↗
+        </a>
+
+        <p style={{ fontSize: "13px", marginTop: "10px" }}>
+          Open the deployed classifier to upload an image and view
+          model predictions and visual explanations.
+        </p>
       </header>
 
       <section className="grid">
@@ -154,6 +182,18 @@ export default function Home() {
 
           <p className="hint">
             The image is sent to the configured Python model API.
+          </p>
+
+          <p style={{ textAlign: "center", marginTop: "18px" }}>
+            Or use the{" "}
+            <a
+              href={STREAMLIT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#245c43", fontWeight: 600 }}
+            >
+              live classifier here ↗
+            </a>
           </p>
         </article>
 
@@ -249,6 +289,45 @@ export default function Home() {
             </div>
           )}
         </article>
+      </section>
+
+      {/* Live classifier call-to-action */}
+      <section
+        style={{
+          textAlign: "center",
+          padding: "30px 16px",
+          marginTop: "24px",
+          borderRadius: "12px",
+        }}
+      >
+        <h2>Ready to try MycoVision?</h2>
+
+        <p style={{ margin: "12px 0 20px" }}>
+          Upload a mushroom image in our deployed AI application
+          and explore its prediction and visual explanations.
+        </p>
+
+        <a
+          href={STREAMLIT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-block",
+            padding: "14px 24px",
+            backgroundColor: "#245c43",
+            color: "#ffffff",
+            borderRadius: "8px",
+            textDecoration: "none",
+            fontWeight: 600,
+          }}
+        >
+          Launch MycoVision ↗
+        </a>
+
+        <p style={{ fontSize: "12px", marginTop: "14px" }}>
+          AI predictions can be wrong. Never use this tool to determine
+          whether a mushroom is safe to eat.
+        </p>
       </section>
 
       <footer>
